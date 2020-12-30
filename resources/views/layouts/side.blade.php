@@ -1,5 +1,4 @@
-@extends('layouts.app')
-@section('content')
+
 <style>
     #sidebar{
         width: 150px;
@@ -36,23 +35,26 @@
     }
 
 </style>
+    <div id = "sidebar">
+        <ul>
+            @if(isset($forSide))
+                @foreach($forSide as $side)
+                    <li><a  href="{{ route('notes.show', $side->id) }}">{{ $side->title }} </a></li>
+                @endforeach
+            @endif
+        </ul>
 
-<div id = "sidebar">
-    <ul>
-        <li>주제1</li>
-        <li>주제2</li>
-        <li>주제3</li>
-    </ul>
+        <div id = "sidebar_btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
 
-    <div id = "sidebar_btn">
-        <span></span>
-        <span></span>
-        <span></span>
     </div>
-</div>
-<script>
-    $('#sidebar_btn').click(function (){
-        $('#sidebar').toggleClass('visible');
-    })
-</script>
-@endsection
+
+    <script>
+        $('#sidebar_btn').click(function (){
+            $('#sidebar').toggleClass('visible');
+        })
+    </script>
+

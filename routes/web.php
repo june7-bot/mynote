@@ -10,16 +10,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\Http\Controllers;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/', 'NoteController@index');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::view('test', 'test');
-Route::view('t', 'notes.input');
-Route::post('note', function () {
-    return view('note');
-});
+
+Route::resource('notes', NoteController::class);
+Route::view('test', 'layouts.search');
+Route::get('/search', 'NoteController@search');
